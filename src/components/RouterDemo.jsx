@@ -1,8 +1,6 @@
 import { useState } from "react";
 import "./RouterDemo.css";
 import { Routes, Route, Link, NavLink } from "react-router-dom";
-import "./RouterDemo.css";
-import { Routes, Route, Link, NavLink } from "react-router-dom";
 
 
 function Home() {
