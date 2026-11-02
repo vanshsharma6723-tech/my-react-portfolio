@@ -1,5 +1,9 @@
+import { useState } from "react";
 import "./RouterDemo.css";
 import { Routes, Route, Link, NavLink } from "react-router-dom";
+import "./RouterDemo.css";
+import { Routes, Route, Link, NavLink } from "react-router-dom";
+
 
 function Home() {
     return (
@@ -171,6 +175,35 @@ function About() {
 
 
 function Contact() {
+    const [formData, setFormData] = useState({
+        name: "",
+        email: "",
+        message: ""
+    });
+
+    const handleChange = (event) => {
+        const { name, value } = event.target;
+
+        setFormData({
+            ...formData,
+            [name]: value
+        });
+    };
+
+    const handleSubmit = (event) => {
+        event.preventDefault();
+
+        alert("Thanks for reaching out!");
+
+        console.log(formData);
+
+        setFormData({
+            name: "",
+            email: "",
+            message: ""
+        });
+    };
+
     return (
         <div className="contact-section">
             <p className="tagline">HAVE A PROJECT IN MIND?</p>
@@ -182,34 +215,38 @@ function Contact() {
                 I'd love to hear from you.
             </p>
 
-            <form
-                className="contact-form"
-                onSubmit={(event) => {
-                    event.preventDefault();
-                    alert("Thanks for reaching out!");
-                }}
-            >
+            <form className="contact-form" onSubmit={handleSubmit}>
+
                 <label htmlFor="name">Your Name</label>
                 <input
                     id="name"
+                    name="name"
                     type="text"
                     placeholder="Enter your name"
+                    value={formData.name}
+                    onChange={handleChange}
                     required
                 />
 
                 <label htmlFor="email">Your Email</label>
                 <input
                     id="email"
+                    name="email"
                     type="email"
                     placeholder="Enter your email"
+                    value={formData.email}
+                    onChange={handleChange}
                     required
                 />
 
                 <label htmlFor="message">Your Message</label>
                 <textarea
                     id="message"
+                    name="message"
                     rows="5"
                     placeholder="Tell me about your idea..."
+                    value={formData.message}
+                    onChange={handleChange}
                     required
                 />
 
